@@ -16,3 +16,15 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["portfolio_site", "core"]
+include = [
+    "core/templates/**/*.html",
+    "core/static/**/*",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/manage.py",
+    "/portfolio_site",
+    "/core",
+    "/requirements.txt",
+]
