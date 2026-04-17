@@ -5,6 +5,7 @@ description = "Nazir Iqbal - Portfolio Website"
 requires-python = ">=3.9"
 dependencies = [
     "django>=4.2,<4.3",
+    "whitenoise[brotli]==6.6.0",
 ]
 
 [project.scripts]
