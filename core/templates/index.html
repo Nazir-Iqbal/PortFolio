@@ -1,0 +1,562 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazir Iqbal | Backend Developer</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>NI<span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#achievements" class="nav-link" data-section="achievements">Achievements</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting animate-in">Hello, I'm</p>
+                <h1 class="hero-name animate-in">
+                    <span class="name-line" id="typedName"></span>
+                    <span class="typed-cursor">|</span>
+                </h1>
+                <div class="hero-title-wrapper animate-in">
+                    <div class="hero-title-rotator">
+                        <span class="rotating-title">Backend Developer</span>
+                        <span class="rotating-title">Django Specialist</span>
+                        <span class="rotating-title">System Architect</span>
+                        <span class="rotating-title">Problem Solver</span>
+                    </div>
+                </div>
+                <p class="hero-description animate-in">
+                    Engineering scalable backend systems with expertise in Django, microservices, and cloud infrastructure. 
+                    Passionate about building high-performance APIs and distributed systems.
+                </p>
+                <div class="hero-cta animate-in">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Get In Touch</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        <span>View Projects</span>
+                        <i class="fas fa-code"></i>
+                    </a>
+                </div>
+                <div class="hero-stats animate-in">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Client Organizations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1000">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Users Served</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="50">0</span><span class="stat-plus">%</span>
+                        <span class="stat-label">Latency Reduced</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-in">
+                <div class="photo-container">
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-user"></i>
+                            <span>Photo</span>
+                        </div>
+                    </div>
+                    <div class="photo-decoration dec-1"></div>
+                    <div class="photo-decoration dec-2"></div>
+                    <div class="photo-decoration dec-3"></div>
+                    <!-- Orbiting tech icons -->
+                    <div class="orbit-ring">
+                        <div class="orbit-icon" style="--delay: 0s;"><i class="fab fa-python"></i></div>
+                        <div class="orbit-icon" style="--delay: -2.5s;"><i class="fab fa-docker"></i></div>
+                        <div class="orbit-icon" style="--delay: -5s;"><i class="fab fa-aws"></i></div>
+                        <div class="orbit-icon" style="--delay: -7.5s;"><i class="fas fa-database"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">01.</span> About Me
+            </h2>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        I'm a <strong>Backend Developer</strong> based in Pune, India, with a strong foundation in 
+                        computer science from the <strong>Army Institute of Technology</strong> (CGPA: 8.6). I specialize 
+                        in building robust, scalable backend systems using <strong>Django</strong>, <strong>Python</strong>, 
+                        and modern cloud technologies.
+                    </p>
+                    <p>
+                        Currently at <strong>Solytics Partners</strong>, I architect multi-tenant authentication systems, 
+                        design vendor-agnostic logging frameworks, and build high-performance APIs that serve 1,000+ users. 
+                        My work combines deep technical expertise with a passion for clean, maintainable code.
+                    </p>
+                    <p>
+                        Beyond professional work, I'm an active competitive programmer — a <strong>Codeforces Specialist</strong> 
+                        (1528 rating) and <strong>5-star CodeChef</strong> coder — which sharpens my algorithmic thinking 
+                        and problem-solving skills every day.
+                    </p>
+                </div>
+                <div class="about-info reveal">
+                    <div class="info-card">
+                        <div class="info-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="info-card-content">
+                            <h3>Education</h3>
+                            <p>B.E. Computer Science</p>
+                            <p class="info-sub">Army Institute of Technology, Pune</p>
+                            <p class="info-highlight">CGPA: 8.6 | 2021 - 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-card-content">
+                            <h3>Location</h3>
+                            <p>Pune, India</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="info-card-content">
+                            <h3>Current Role</h3>
+                            <p>Backend Developer</p>
+                            <p class="info-sub">Solytics Partners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">02.</span> Experience
+            </h2>
+            <div class="timeline">
+                <!-- Solytics Partners -->
+                <div class="timeline-item reveal" data-side="left">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-company">
+                                <h3>Solytics Partners</h3>
+                                <span class="card-role">Backend Developer</span>
+                            </div>
+                            <div class="card-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Jun 2025 – Present</span>
+                            </div>
+                        </div>
+                        <div class="card-location">
+                            <i class="fas fa-map-marker-alt"></i> Pune, India
+                        </div>
+                        <ul class="card-details">
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Engineered a <strong>multi-tenant OAuth2 authentication system</strong> with a single admin panel supporting cross-environment management across <strong>10+ client organizations</strong>, delivering <strong>40% faster login throughput</strong>.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Built a secure <strong>API key management and token exchange framework</strong> enabling authenticated inter-service communication with admin-controlled access.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Developed a <strong>Celery-based async synchronization system</strong> with Redis caching, improving operational efficiency by <strong>40%</strong> and reducing API latency by <strong>50%</strong>.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Designed a <strong>vendor-agnostic logging system</strong> supporting Elastic, Datadog, and Dynatrace with dynamic provider switching.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Created the <strong>Freeware Service</strong> enabling <strong>1,000+ users</strong> to explore analytics solutions through Nimbus workflows with group-based access controls.
+                            </li>
+                        </ul>
+                        <div class="card-tags">
+                            <span>Django</span><span>OAuth2</span><span>Celery</span><span>Redis</span><span>Elastic</span><span>Datadog</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ZS Associates -->
+                <div class="timeline-item reveal" data-side="right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-company">
+                                <h3>ZS Associates</h3>
+                                <span class="card-role">Business Technology Solution Associate – Intern</span>
+                            </div>
+                            <div class="card-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Jan 2025 – May 2025</span>
+                            </div>
+                        </div>
+                        <div class="card-location">
+                            <i class="fas fa-map-marker-alt"></i> Pune, India
+                        </div>
+                        <ul class="card-details">
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Revamped <strong>CI/CD pipelines in Azure DevOps</strong> with automated testing and IaC, achieving <strong>30% reduction in deployment times</strong> and <strong>20% increase in release frequency</strong>.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Redesigned <strong>Hive ingestion pipelines</strong>, reducing data processing latency by <strong>40%</strong> and accelerating report generation by <strong>35%</strong>.
+                            </li>
+                            <li>
+                                <i class="fas fa-chevron-right"></i>
+                                Upgraded <strong>ETL pipelines</strong> with Python, DAG orchestration, and multithreading, improving data processing speeds by <strong>200–300%</strong>.
+                            </li>
+                        </ul>
+                        <div class="card-tags">
+                            <span>Azure DevOps</span><span>Python</span><span>Hive</span><span>ETL</span><span>CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">03.</span> Projects
+            </h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card reveal" data-tilt>
+                    <div class="project-card-inner">
+                        <div class="project-card-front">
+                            <div class="project-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <h3>Django Tweet</h3>
+                            <p class="project-subtitle">Twitter-like Microblogging Platform</p>
+                            <div class="project-tech">
+                                <span>Django</span><span>Python</span><span>SQLite</span><span>JinjaX</span>
+                            </div>
+                            <div class="project-flip-hint">
+                                <i class="fas fa-sync-alt"></i> Hover for details
+                            </div>
+                        </div>
+                        <div class="project-card-back">
+                            <h3>Django Tweet</h3>
+                            <ul>
+                                <li>Full-stack Twitter-style app with 50+ active users</li>
+                                <li>Django ORM managing 500+ tweet records with relational mappings</li>
+                                <li>10+ reusable JinjaX templates reducing code duplication by 40%</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal" data-tilt>
+                    <div class="project-card-inner">
+                        <div class="project-card-front">
+                            <div class="project-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>ML Analytics Platform</h3>
+                            <p class="project-subtitle">Full-Stack Machine Learning Analytics</p>
+                            <div class="project-tech">
+                                <span>Django</span><span>PostgreSQL</span><span>JWT</span><span>Docker</span><span>AWS</span>
+                            </div>
+                            <div class="project-flip-hint">
+                                <i class="fas fa-sync-alt"></i> Hover for details
+                            </div>
+                        </div>
+                        <div class="project-card-back">
+                            <h3>ML Analytics Platform</h3>
+                            <ul>
+                                <li>Upload datasets, apply supervised/unsupervised ML models</li>
+                                <li>JWT auth & API Key management for 100+ projects</li>
+                                <li>Dockerized & deployed on AWS EC2 with 100% uptime</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - Freeware Service -->
+                <div class="project-card reveal" data-tilt>
+                    <div class="project-card-inner">
+                        <div class="project-card-front">
+                            <div class="project-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Freeware Service</h3>
+                            <p class="project-subtitle">Analytics Solutions Platform @ Solytics</p>
+                            <div class="project-tech">
+                                <span>Django</span><span>Nimbus</span><span>RBAC</span><span>Python</span>
+                            </div>
+                            <div class="project-flip-hint">
+                                <i class="fas fa-sync-alt"></i> Hover for details
+                            </div>
+                        </div>
+                        <div class="project-card-back">
+                            <h3>Freeware Service</h3>
+                            <ul>
+                                <li>Enabled 1,000+ users to explore analytics solutions</li>
+                                <li>Sample projects & Nimbus workflow creation</li>
+                                <li>Group-based access controls driving early adoption</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-lock"></i> Private</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">04.</span> Skills & Technologies
+            </h2>
+            <div class="skills-container">
+                <div class="skills-category reveal">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="95">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <span>Python</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="80">
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <span>C++</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="75">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <span>Java</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal">
+                    <h3><i class="fas fa-layer-group"></i> Frameworks & Tools</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="95">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <span>Django</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="70">
+                            <div class="skill-icon"><i class="fab fa-react"></i></div>
+                            <span>ReactJS</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 70%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="80">
+                            <div class="skill-icon"><i class="fas fa-link"></i></div>
+                            <span>LangChain</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="85">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <span>MySQL</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="80">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <span>PostgreSQL</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="75">
+                            <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+                            <span>MongoDB</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal">
+                    <h3><i class="fas fa-cloud"></i> DevOps & Cloud</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="85">
+                            <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                            <span>Docker</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="70">
+                            <div class="skill-icon"><i class="fas fa-dharmachakra"></i></div>
+                            <span>Kubernetes</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 70%"></div></div>
+                        </div>
+                        <div class="skill-item" data-skill="80">
+                            <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                            <span>AWS</span>
+                            <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section achievements">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">05.</span> Achievements
+            </h2>
+            <div class="achievements-grid">
+                <div class="achievement-card reveal">
+                    <div class="achievement-icon">
+                        <div class="icon-glow"></div>
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Codeforces Specialist</h3>
+                    <div class="achievement-rating">
+                        <span class="rating-number" data-target="1528">0</span>
+                        <span class="rating-label">Rating</span>
+                    </div>
+                    <p>Boosted code efficiency by 25% through advanced algorithmic optimizations from competitive programming expertise.</p>
+                </div>
+                <div class="achievement-card reveal">
+                    <div class="achievement-icon">
+                        <div class="icon-glow"></div>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>CodeChef 5-Star</h3>
+                    <div class="achievement-rating">
+                        <span class="rating-number" data-target="2000">0</span>
+                        <span class="rating-label">Score</span>
+                    </div>
+                    <p>Ranked among top performers, completing 50+ complex coding challenges that hone development expertise.</p>
+                </div>
+                <div class="achievement-card reveal">
+                    <div class="achievement-icon">
+                        <div class="icon-glow"></div>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Excellence</h3>
+                    <div class="achievement-rating">
+                        <span class="rating-number" data-target="86">0</span>
+                        <span class="rating-label">CGPA (×10)</span>
+                    </div>
+                    <p>B.E. Computer Science from Army Institute of Technology, Pune with a strong 8.6 CGPA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-number">06.</span> Get In Touch
+            </h2>
+            <div class="contact-content">
+                <div class="contact-text reveal">
+                    <p>I'm currently open to new opportunities and interesting projects. Whether you have a question or just want to say hi, my inbox is always open!</p>
+                </div>
+                <div class="contact-grid reveal">
+                    <a href="mailto:merajunnesha123@gmail.com" class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Email</h3>
+                        <p>merajunnesha123@gmail.com</p>
+                    </a>
+                    <a href="tel:+918522867367" class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                        <h3>Phone</h3>
+                        <p>+91 8522867367</p>
+                    </a>
+                    <a href="#" class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-linkedin"></i></div>
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </a>
+                    <a href="#" class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                        <h3>GitHub</h3>
+                        <p>View my repos</p>
+                    </a>
+                </div>
+                <a href="mailto:merajunnesha123@gmail.com" class="btn btn-primary btn-large reveal">
+                    <span>Say Hello</span>
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Designed & Built by <strong>Nazir Iqbal</strong></p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
