@@ -1,5 +1,7 @@
 #!/bin/bash
-# Build script for Vercel - collects static files
-pip install uv
-uv pip install --system -r requirements.txt
-python3 manage.py collectstatic --noinput
+# Build script for Vercel - installs dependencies and collects static files.
+set -e
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python manage.py collectstatic --noinput
