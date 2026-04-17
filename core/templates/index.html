@@ -69,6 +69,10 @@
                         <span>View Projects</span>
                         <i class="fas fa-code"></i>
                     </a>
+                    <a href="{% static 'Resume.pdf' %}" download="Nazir_Iqbal_Resume.pdf" class="btn btn-resume">
+                        <span>Download Resume</span>
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
                 <div class="hero-stats animate-in">
                     <div class="stat-item">
@@ -88,10 +92,7 @@
             <div class="hero-visual animate-in">
                 <div class="photo-container">
                     <div class="photo-frame">
-                        <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
-                            <span>Photo</span>
-                        </div>
+                        <img src="{% static 'images/profile.jpeg' %}" alt="Nazir Iqbal - Backend Developer" class="profile-photo" loading="eager">
                     </div>
                     <div class="photo-decoration dec-1"></div>
                     <div class="photo-decoration dec-2"></div>
