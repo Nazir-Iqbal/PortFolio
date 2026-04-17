@@ -17,3 +17,5 @@ application = get_wsgi_application()
 
 # Vercel entry point
 app = application
+
+app = application
