@@ -7,6 +7,9 @@ dependencies = [
     "django>=4.2,<4.3",
 ]
 
+[project.scripts]
+app = "portfolio_site.wsgi:application"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
