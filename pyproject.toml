@@ -6,6 +6,8 @@ requires-python = ">=3.9"
 dependencies = [
     "django>=4.2,<4.3",
     "whitenoise[brotli]==6.6.0",
+    "python-dotenv>=1.0.0",
+    "openai>=1.0.0",
 ]
 
 [project.scripts]
