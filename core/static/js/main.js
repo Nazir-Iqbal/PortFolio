@@ -4,36 +4,127 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const isMobile = window.innerWidth <= 768;
+    const isTouch = 'ontouchstart' in window;
+
     // ============================================
-    // Custom Cursor
+    // Custom Cursor (desktop only)
     // ============================================
     const cursorDot = document.getElementById('cursorDot');
     const cursorOutline = document.getElementById('cursorOutline');
     let mouseX = 0, mouseY = 0;
     let outlineX = 0, outlineY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
-    });
+    if (!isMobile) {
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
 
-    function animateCursor() {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
-        cursorOutline.style.left = outlineX + 'px';
-        cursorOutline.style.top = outlineY + 'px';
-        requestAnimationFrame(animateCursor);
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.left = outlineX + 'px';
+            cursorOutline.style.top = outlineY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, .btn, .project-preview, .contact-card, .info-card, .achievement-card, .hamburger, .expand-btn, .project-detail-btn');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+        });
+
+        // Click animation
+        document.addEventListener('mousedown', () => cursorOutline.classList.add('click'));
+        document.addEventListener('mouseup', () => cursorOutline.classList.remove('click'));
     }
-    animateCursor();
 
-    // Hover effect on interactive elements
-    const hoverTargets = document.querySelectorAll('a, button, .btn, .project-card, .contact-card, .info-card, .achievement-card, .hamburger');
-    hoverTargets.forEach(el => {
-        el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
-    });
+    // ============================================
+    // Cursor Trail (desktop only)
+    // ============================================
+    if (!isMobile) {
+        const trailCanvas = document.getElementById('trailCanvas');
+        const trailCtx = trailCanvas.getContext('2d');
+        let trails = [];
+
+        function resizeTrail() {
+            trailCanvas.width = window.innerWidth;
+            trailCanvas.height = window.innerHeight;
+        }
+        resizeTrail();
+        window.addEventListener('resize', resizeTrail);
+
+        document.addEventListener('mousemove', (e) => {
+            trails.push({
+                x: e.clientX,
+                y: e.clientY,
+                life: 1,
+                size: Math.random() * 3 + 1,
+                color: Math.random() > 0.5 ? '108, 99, 255' : '0, 212, 255'
+            });
+            if (trails.length > 50) trails.shift();
+        });
+
+        function animateTrail() {
+            trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+            trails.forEach((t, i) => {
+                t.life -= 0.025;
+                if (t.life <= 0) {
+                    trails.splice(i, 1);
+                    return;
+                }
+                trailCtx.beginPath();
+                trailCtx.arc(t.x, t.y, t.size * t.life, 0, Math.PI * 2);
+                trailCtx.fillStyle = `rgba(${t.color}, ${t.life * 0.5})`;
+                trailCtx.fill();
+            });
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
+    }
+
+    // ============================================
+    // Click Ripple Effect (both mobile and desktop)
+    // ============================================
+    const rippleContainer = document.getElementById('rippleContainer');
+
+    function createRipple(x, y) {
+        const ripple = document.createElement('div');
+        ripple.classList.add('click-ripple');
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        rippleContainer.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+    }
+
+    document.addEventListener('click', (e) => createRipple(e.clientX, e.clientY));
+    if (isTouch) {
+        document.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            createRipple(touch.clientX, touch.clientY);
+        }, { passive: true });
+    }
+
+    // ============================================
+    // Glow Card - Mouse Follow Effect (desktop)
+    // ============================================
+    if (!isMobile) {
+        const glowCards = document.querySelectorAll('.glow-card');
+        glowCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--glow-x', x + 'px');
+                card.style.setProperty('--glow-y', y + 'px');
+            });
+        });
+    }
 
     // ============================================
     // Particle Background
@@ -41,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
-    let animationId;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -77,7 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initParticles() {
-        const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+        const count = isMobile
+            ? Math.min(30, Math.floor((canvas.width * canvas.height) / 25000))
+            : Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
         particles = [];
         for (let i = 0; i < count; i++) {
             particles.push(new Particle());
@@ -103,14 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Mouse interaction with particles
-    let particleMouseX = 0, particleMouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-        particleMouseX = e.clientX;
-        particleMouseY = e.clientY;
-    });
+    // Mouse interaction with particles (desktop)
+    let particleMouseX = -1000, particleMouseY = -1000;
+    if (!isMobile) {
+        document.addEventListener('mousemove', (e) => {
+            particleMouseX = e.clientX;
+            particleMouseY = e.clientY;
+        });
+    }
 
     function drawMouseConnections() {
+        if (isMobile) return;
         particles.forEach(p => {
             const dx = particleMouseX - p.x;
             const dy = particleMouseY - p.y;
@@ -135,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         drawConnections();
         drawMouseConnections();
-        animationId = requestAnimationFrame(animateParticles);
+        requestAnimationFrame(animateParticles);
     }
 
     initParticles();
@@ -149,12 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('navLinks');
     const navLinkItems = document.querySelectorAll('.nav-link');
 
-    // Scrolled state
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile menu
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('open');
@@ -220,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Counter Animation
     // ============================================
     function animateCounter(el, target, duration = 2000) {
+        if (target === 0) return;
         let start = 0;
         const step = target / (duration / 16);
         function count() {
@@ -278,6 +372,77 @@ document.addEventListener('DOMContentLoaded', () => {
     skillItems.forEach(el => skillObserver.observe(el));
 
     // ============================================
+    // Expandable Experience Lists
+    // ============================================
+    const expandBtns = document.querySelectorAll('.expand-btn');
+    expandBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const card = btn.closest('.timeline-card');
+            const list = card.querySelector('.expandable-list');
+            const isExpanded = btn.getAttribute('data-expanded') === 'true';
+
+            if (isExpanded) {
+                list.classList.remove('expanded');
+                btn.setAttribute('data-expanded', 'false');
+                const hiddenCount = list.querySelectorAll('.detail-hidden').length;
+                btn.querySelector('.expand-text').textContent = `Show ${hiddenCount} more`;
+            } else {
+                list.classList.add('expanded');
+                btn.setAttribute('data-expanded', 'true');
+                btn.querySelector('.expand-text').textContent = 'Show less';
+            }
+        });
+    });
+
+    // ============================================
+    // Project Modals
+    // ============================================
+    const detailBtns = document.querySelectorAll('.project-detail-btn');
+    const modals = document.querySelectorAll('.project-modal');
+
+    detailBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    modals.forEach(modal => {
+        const close = modal.querySelector('.modal-close');
+        const backdrop = modal.querySelector('.modal-backdrop');
+
+        if (close) {
+            close.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        if (backdrop) {
+            backdrop.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modals.forEach(modal => {
+                if (modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    });
+
+    // ============================================
     // Smooth scroll for anchor links
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -295,8 +460,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // Tilt Effect on Project Cards (desktop only)
     // ============================================
-    if (window.innerWidth > 768) {
-        const tiltCards = document.querySelectorAll('[data-tilt]');
+    if (!isMobile) {
+        const tiltCards = document.querySelectorAll('.project-preview');
         tiltCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -304,31 +469,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                const rotateX = (y - centerY) / 30;
+                const rotateY = (centerX - x) / 30;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
             });
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
     }
 
     // ============================================
-    // Magnetic Effect on Buttons
+    // Magnetic Effect on Buttons (desktop only)
     // ============================================
-    if (window.innerWidth > 768) {
-        const magneticBtns = document.querySelectorAll('.btn');
+    if (!isMobile) {
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
         magneticBtns.forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
             });
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = 'translate(0, 0)';
             });
+        });
+    }
+
+    // ============================================
+    // Parallax on scroll for sections (subtle)
+    // ============================================
+    if (!isMobile) {
+        const parallaxSections = document.querySelectorAll('.section-title');
+        window.addEventListener('scroll', () => {
+            parallaxSections.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const scrollPercent = rect.top / window.innerHeight;
+                el.style.transform = `translateX(${scrollPercent * 15}px)`;
+            });
+        });
+    }
+
+    // ============================================
+    // Mobile Touch Feedback - Vibration (if supported)
+    // ============================================
+    if (isTouch) {
+        const touchTargets = document.querySelectorAll('.btn, .expand-btn, .project-detail-btn, .contact-card, .achievement-card');
+        touchTargets.forEach(el => {
+            el.addEventListener('touchstart', () => {
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+            }, { passive: true });
         });
     }
 
