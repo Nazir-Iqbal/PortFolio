@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const expandBtns = document.querySelectorAll('.expand-btn');
     expandBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const card = btn.closest('.timeline-card');
+            const card = btn.closest('.exp-card');
             const list = card.querySelector('.expandable-list');
             const isExpanded = btn.getAttribute('data-expanded') === 'true';
 
@@ -393,6 +393,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ============================================
+    // Experience Card Typing Animation
+    // ============================================
+    function typeIntoEl(el, text, speed, onDone) {
+        el.textContent = '';
+        const cursor = document.createElement('span');
+        cursor.className = 'card-typed-cursor';
+        el.appendChild(cursor);
+        let i = 0;
+        function next() {
+            if (i < text.length) {
+                cursor.insertAdjacentText('beforebegin', text[i]);
+                i++;
+                setTimeout(next, speed + Math.random() * (speed * 0.6));
+            } else {
+                cursor.remove();
+                if (onDone) onDone();
+            }
+        }
+        next();
+    }
+
+    const timelineCards = document.querySelectorAll('.exp-card');
+    const cardTypingObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const item = entry.target;
+            if (item.dataset.typed) return;
+            item.dataset.typed = 'true';
+            cardTypingObserver.unobserve(item);
+
+            const nameEl = item.querySelector('.exp-company-name');
+            const roleEl = item.querySelector('.exp-role');
+            const nameText = nameEl ? nameEl.textContent.trim() : '';
+            const roleText = roleEl ? roleEl.textContent.trim() : '';
+
+            // Small delay after card reveal animation starts
+            setTimeout(() => {
+                if (nameEl) {
+                    typeIntoEl(nameEl, nameText, 55, () => {
+                        if (roleEl) typeIntoEl(roleEl, roleText, 38);
+                    });
+                }
+            }, 300);
+        });
+    }, { threshold: 0.35 });
+
+    timelineCards.forEach(card => cardTypingObserver.observe(card));
 
     // ============================================
     // Project Modals
@@ -523,6 +572,100 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, { passive: true });
         });
+    }
+
+    // ============================================
+    // Scroll Progress Indicator (sidebar)
+    // ============================================
+    const sidebarProgress = document.getElementById('sidebarProgress');
+    if (sidebarProgress) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            sidebarProgress.style.height = scrollPercent + '%';
+            sidebarProgress.style.maxHeight = '60px';
+        });
+    }
+
+    // ============================================
+    // AI Chat Widget
+    // ============================================
+    const chatToggle = document.getElementById('chatToggle');
+    const chatPanel = document.getElementById('chatPanel');
+    const chatClose = document.getElementById('chatClose');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    if (chatToggle && chatPanel) {
+        chatToggle.addEventListener('click', () => {
+            chatPanel.classList.toggle('open');
+            if (chatPanel.classList.contains('open')) {
+                chatInput.focus();
+            }
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatPanel.classList.remove('open');
+        });
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            appendMessage(message, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            const typingEl = appendTyping();
+
+            try {
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message }),
+                });
+
+                const data = await response.json();
+                typingEl.remove();
+
+                if (data.reply) {
+                    appendMessage(data.reply, 'bot');
+                } else {
+                    appendMessage('Sorry, I couldn\'t process that. Try again!', 'bot');
+                }
+            } catch (err) {
+                typingEl.remove();
+                appendMessage('Connection error. Please try again.', 'bot');
+            }
+        });
+
+        function appendMessage(text, type) {
+            const msg = document.createElement('div');
+            msg.className = `chat-msg ${type}`;
+            msg.innerHTML = `<span>${escapeHtml(text)}</span>`;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msg;
+        }
+
+        function appendTyping() {
+            const msg = document.createElement('div');
+            msg.className = 'chat-msg bot typing';
+            msg.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msg;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
     }
 
 });

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6c63ff"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded background -->
+  <rect width="64" height="64" rx="14" ry="14" fill="#12121a"/>
+  <!-- Bracket left < -->
+  <text x="3" y="46" font-family="JetBrains Mono, Fira Code, monospace" font-size="19" font-weight="700" fill="url(#g)">&lt;</text>
+  <!-- N -->
+  <text x="16" y="46" font-family="JetBrains Mono, Fira Code, monospace" font-size="19" font-weight="700" fill="#e8e8f0">N</text>
+  <!-- I -->
+  <text x="30" y="46" font-family="JetBrains Mono, Fira Code, monospace" font-size="19" font-weight="700" fill="#e8e8f0">I</text>
+  <!-- slash and > -->
+  <text x="37" y="46" font-family="JetBrains Mono, Fira Code, monospace" font-size="19" font-weight="700" fill="url(#g)">/&gt;</text>
+</svg>

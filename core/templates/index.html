@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nazir Iqbal | Software Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -181,146 +182,144 @@
             <h2 class="section-title reveal">
                 <span class="title-number">02.</span> Experience
             </h2>
-            <div class="timeline">
+            <div class="exp-grid">
+
                 <!-- Solytics Partners -->
-                <div class="timeline-item reveal" data-side="left">
-                    <div class="timeline-dot">
-                        <div class="dot-pulse"></div>
+                <div class="exp-card glow-card reveal" data-company="solytics">
+                    <div class="exp-card-header">
+                        <div class="exp-company-badge">S</div>
+                        <div class="exp-company-info">
+                            <h3 class="exp-company-name">Solytics Partners</h3>
+                            <span class="exp-role">Backend Developer</span>
+                        </div>
+                        <div class="exp-meta">
+                            <div class="exp-duration"><i class="far fa-calendar-alt"></i> Jun 2025 – Present</div>
+                            <div class="exp-location"><i class="fas fa-map-marker-alt"></i> Pune, India</div>
+                        </div>
                     </div>
-                    <div class="timeline-card glow-card">
-                        <div class="card-header">
-                            <div class="card-company">
-                                <h3>Solytics Partners</h3>
-                                <span class="card-role">Backend Developer</span>
-                            </div>
-                            <div class="card-date">
-                                <i class="far fa-calendar-alt"></i>
-                                <span>Jun 2025 – Present</span>
-                            </div>
-                        </div>
-                        <div class="card-location">
-                            <i class="fas fa-map-marker-alt"></i> Pune, India
-                        </div>
-                        <ul class="card-details expandable-list" data-visible="4">
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Engineered a <strong>Multi-Tenant OAuth2 Authentication System</strong> with a unified Admin Panel, supporting cross-environment management across <strong>10+ client organizations</strong>, achieving <strong>40% faster login throughput</strong>.
-                            </li>
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Designed a <strong>Project Ownership System with RBAC</strong>, enabling granular, multi-level authorization and secure access governance across projects.
-                            </li>
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Extended the Admin Panel with <strong>Project Roles and Permissions</strong>, and architected a <strong>Multi-Tenant, Multi-Product Control System</strong> for centralized management.
-                            </li>
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Built a <strong>Secure API Key Management and Token Exchange Framework</strong> enabling authenticated inter-service communication with admin-controlled access.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Developed a <strong>Celery-Based Async Processing System</strong> with Webhook Integration and Email Notifications, integrated with Redis Caching, improving efficiency by <strong>40%</strong> and reducing API latency by <strong>50%</strong>.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Designed a <strong>Vendor-Agnostic Logging Framework</strong> supporting Elastic, Datadog, and Dynatrace with dynamic provider switching via environment-based configuration.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Contributed to the <strong>Nimbus Platform</strong> by developing Model Control and Validation Modules — EDA, Model Evaluation, Model Interpretation, and Model Training for end-to-end analytics.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Implemented a <strong>Custom Job Deployment Framework</strong> that dynamically schedules workloads based on data size and resource requirements.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Collaborated on integrating <strong>Apache Spark</strong> for distributed data processing, enabling efficient handling of large-scale datasets.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Developed a <strong>GenAI-Powered Analytics and Documentation Platform</strong> using LLMs to analyze models, charts, and outputs from Nimbus.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Implemented <strong>Retrieval-Augmented Generation (RAG)</strong> using Vector Database (Milvus) for context-aware insights and enhanced user interaction.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Created the <strong>Freeware Service</strong> enabling <strong>1,000+ users</strong> to explore analytics solutions through Nimbus workflows with group-based access controls.
-                            </li>
-                        </ul>
-                        <button class="expand-btn" data-expanded="false">
-                            <span class="expand-text">Show 8 more</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="card-tags">
-                            <span>Django</span><span>OAuth2</span><span>Celery</span><span>Redis</span><span>RBAC</span><span>Apache Spark</span><span>LLMs</span><span>RAG</span><span>Milvus</span>
-                        </div>
+                    <div class="exp-bullets-header">
+                        <span>Contribution</span>
+                        <span>Impact</span>
+                    </div>
+                    <ul class="exp-bullets expandable-list" data-visible="4">
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Engineered a <strong>Multi-Tenant OAuth2 Authentication System</strong> with a unified Admin Panel supporting cross-environment management across 10+ client organizations</span>
+                            <span class="bullet-metric">40% faster login</span>
+                        </li>
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Designed a <strong>Project Ownership System with RBAC</strong>, enabling granular multi-level authorization and secure access governance across projects</span>
+                            <span class="bullet-metric">10+ clients</span>
+                        </li>
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Architected a <strong>Multi-Tenant, Multi-Product Control System</strong> with Project Roles and Permissions for centralized product management</span>
+                            <span class="bullet-metric">Centralized mgmt</span>
+                        </li>
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Built a <strong>Secure API Key Management and Token Exchange Framework</strong> for authenticated inter-service communication with admin-controlled access</span>
+                            <span class="bullet-metric">Admin-controlled</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Developed a <strong>Celery-Based Async Processing System</strong> with Webhook Integration, Redis Caching, and Email Notifications</span>
+                            <span class="bullet-metric">40% efficiency · 50% less latency</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Designed a <strong>Vendor-Agnostic Logging Framework</strong> supporting Elastic, Datadog, and Dynatrace with dynamic environment-based provider switching</span>
+                            <span class="bullet-metric">3 providers</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Built <strong>Model Control and Validation Modules</strong> for the Nimbus Platform — EDA, Model Evaluation, Interpretation, and Training</span>
+                            <span class="bullet-metric">End-to-end ML</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Implemented a <strong>Custom Job Deployment Framework</strong> that dynamically schedules workloads based on data size and resource requirements</span>
+                            <span class="bullet-metric">Dynamic scaling</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Integrated <strong>Apache Spark</strong> for distributed data processing, enabling efficient handling of large-scale datasets across the platform</span>
+                            <span class="bullet-metric">Large-scale data</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Developed a <strong>GenAI-Powered Analytics and Documentation Platform</strong> using LLMs to analyze models, charts, and Nimbus outputs</span>
+                            <span class="bullet-metric">LLM-powered</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Implemented <strong>Retrieval-Augmented Generation (RAG)</strong> using Milvus Vector Database for context-aware insights and enhanced user interaction</span>
+                            <span class="bullet-metric">Context-aware AI</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Created the <strong>Freeware Service</strong> enabling users to explore analytics through Nimbus workflows with group-based access controls</span>
+                            <span class="bullet-metric">1,000+ users</span>
+                        </li>
+                    </ul>
+                    <button class="expand-btn" data-expanded="false">
+                        <span class="expand-text">Show 8 more</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="exp-tags">
+                        <span>Django</span><span>OAuth2</span><span>Celery</span><span>Redis</span><span>RBAC</span><span>Apache Spark</span><span>LLMs</span><span>RAG</span><span>Milvus</span>
                     </div>
                 </div>
 
                 <!-- ZS Associates -->
-                <div class="timeline-item reveal" data-side="right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card glow-card">
-                        <div class="card-header">
-                            <div class="card-company">
-                                <h3>ZS Associates</h3>
-                                <span class="card-role">Business Technology Solution Associate – Intern</span>
-                            </div>
-                            <div class="card-date">
-                                <i class="far fa-calendar-alt"></i>
-                                <span>Jan 2025 – May 2025</span>
-                            </div>
+                <div class="exp-card glow-card reveal" data-company="zs">
+                    <div class="exp-card-header">
+                        <div class="exp-company-badge">Z</div>
+                        <div class="exp-company-info">
+                            <h3 class="exp-company-name">ZS Associates</h3>
+                            <span class="exp-role">Business Technology Solution Associate – Intern</span>
                         </div>
-                        <div class="card-location">
-                            <i class="fas fa-map-marker-alt"></i> Pune, India
-                        </div>
-                        <ul class="card-details expandable-list" data-visible="3">
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Revamped <strong>CI/CD Pipelines in Azure DevOps</strong> with automated testing and IaC, achieving <strong>30% reduction in deployment times</strong> and <strong>20% increase in release frequency</strong>.
-                            </li>
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Redesigned <strong>Hive-Based Data Ingestion Pipelines</strong>, reducing data processing latency by <strong>40%</strong> and accelerating report generation by <strong>35%</strong>.
-                            </li>
-                            <li class="detail-visible">
-                                <i class="fas fa-chevron-right"></i>
-                                Upgraded <strong>ETL Pipelines</strong> using Python, DAG Orchestration, and Multithreading, improving data processing speed by <strong>200–300%</strong>.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Designed a <strong>4-Layer Data Architecture</strong> for end-to-end data processing and analytics, improving scalability and system efficiency.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Built the <strong>Data Ingestion Layer</strong> to handle raw data ingestion into Hive, ensuring reliable and structured data storage.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Developed the <strong>Preprocessing Layer</strong> for data cleaning, transformation, and validation, improving data quality for downstream processing.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Implemented the <strong>Processing Layer</strong> using Apache Spark for distributed computation, enabling efficient handling of large-scale datasets.
-                            </li>
-                            <li class="detail-hidden">
-                                <i class="fas fa-chevron-right"></i>
-                                Created the <strong>Visualization Layer</strong> using Power BI, delivering dynamic dashboards and real-time insights for business stakeholders.
-                            </li>
-                        </ul>
-                        <button class="expand-btn" data-expanded="false">
-                            <span class="expand-text">Show 5 more</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="card-tags">
-                            <span>Azure DevOps</span><span>Python</span><span>Hive</span><span>ETL</span><span>CI/CD</span><span>Apache Spark</span><span>Power BI</span>
+                        <div class="exp-meta">
+                            <div class="exp-duration"><i class="far fa-calendar-alt"></i> Jan 2025 – May 2025</div>
+                            <div class="exp-location"><i class="fas fa-map-marker-alt"></i> Pune, India</div>
                         </div>
                     </div>
+                    <div class="exp-bullets-header">
+                        <span>Contribution</span>
+                        <span>Impact</span>
+                    </div>
+                    <ul class="exp-bullets expandable-list" data-visible="3">
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Revamped <strong>CI/CD Pipelines in Azure DevOps</strong> with automated testing and Infrastructure as Code</span>
+                            <span class="bullet-metric">30% faster deploys · 20% more releases</span>
+                        </li>
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Redesigned <strong>Hive-Based Data Ingestion Pipelines</strong>, reducing processing latency and accelerating report generation significantly</span>
+                            <span class="bullet-metric">40% less latency · 35% faster reports</span>
+                        </li>
+                        <li class="exp-bullet detail-visible">
+                            <span class="bullet-desc">Upgraded <strong>ETL Pipelines</strong> using Python, DAG Orchestration, and Multithreading for dramatically faster data throughput</span>
+                            <span class="bullet-metric">200–300% faster</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Designed a <strong>4-Layer Data Architecture</strong> for end-to-end data processing and analytics, improving scalability and system efficiency</span>
+                            <span class="bullet-metric">Scalable design</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Built the <strong>Data Ingestion Layer</strong> to handle raw data ingestion into Hive with reliable and structured data storage</span>
+                            <span class="bullet-metric">Raw → Structured</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Developed the <strong>Preprocessing Layer</strong> for data cleaning, transformation, and validation to improve downstream quality</span>
+                            <span class="bullet-metric">Improved quality</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Implemented the <strong>Processing Layer</strong> using Apache Spark for distributed computation at scale</span>
+                            <span class="bullet-metric">Distributed compute</span>
+                        </li>
+                        <li class="exp-bullet detail-hidden">
+                            <span class="bullet-desc">Created the <strong>Visualization Layer</strong> using Power BI with dynamic dashboards and real-time business insights</span>
+                            <span class="bullet-metric">Real-time insights</span>
+                        </li>
+                    </ul>
+                    <button class="expand-btn" data-expanded="false">
+                        <span class="expand-text">Show 5 more</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="exp-tags">
+                        <span>Azure DevOps</span><span>Python</span><span>Hive</span><span>ETL</span><span>CI/CD</span><span>Apache Spark</span><span>Power BI</span>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -841,12 +840,42 @@
     </footer>
 
     <!-- Floating Social Bar -->
-    <div class="social-sidebar">
-        <a href="{{ github_url }}" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="{{ codeforces_url }}" target="_blank" rel="noopener noreferrer" title="Codeforces"><i class="fas fa-code"></i></a>
-        <a href="{{ naukri_url }}" target="_blank" rel="noopener noreferrer" title="Naukri"><i class="fas fa-briefcase"></i></a>
+    <div class="social-sidebar" id="socialSidebar">
+        <div class="sidebar-progress" id="sidebarProgress"></div>
+        <a href="{{ github_url }}" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+        <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="{{ codeforces_url }}" target="_blank" rel="noopener noreferrer" data-tooltip="Codeforces"><i class="fas fa-code"></i></a>
+        <a href="{{ naukri_url }}" target="_blank" rel="noopener noreferrer" data-tooltip="Naukri"><i class="fas fa-briefcase"></i></a>
         <div class="sidebar-line"></div>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle" aria-label="Chat with AI assistant">
+            <i class="fas fa-robot"></i>
+            <span class="chat-pulse"></span>
+        </button>
+        <div class="chat-panel" id="chatPanel">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h4>Ask About Nazir</h4>
+                        <span class="chat-status">AI-powered assistant</span>
+                    </div>
+                </div>
+                <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg bot">
+                    <span>Hi! I can answer questions about Nazir's skills, experience, projects, and more. Ask me anything!</span>
+                </div>
+            </div>
+            <form class="chat-input-wrap" id="chatForm">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ask about skills, experience..." maxlength="500" autocomplete="off">
+                <button type="submit" class="chat-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
